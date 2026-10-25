@@ -37,12 +37,7 @@
               version
               ;
 
-            postInstall = ''
-              mkdir -p $out/dist
-
-              cp src/* $out/dist/.
-              cp -r assets $out/dist/.
-            '';
+            postInstall = builtins.readFile ./install.sh;
           };
 
           formatter = pkgs.nixfmt-tree; # Nix flake formatter. Run `nix fmt` to use

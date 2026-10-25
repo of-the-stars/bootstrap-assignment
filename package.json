@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "./build.sh"
+  },
   "dependencies": {
     "bootstrap": "^6.0.0-alpha.1"
   }
