@@ -18,8 +18,9 @@
       forSystem =
         system:
         let
-          pkgs = import nixpkgs { inherit system; };
+          pkgs = nixpkgs.legacyPackages.${system};
           pname = "bootstrap-assignment";
+          version = "1.0.0";
           src = ./.;
         in
         {
@@ -33,7 +34,15 @@
             inherit
               src
               pname
+              version
               ;
+
+            postInstall = ''
+              mkdir -p $out/dist
+
+              cp src/* $out/dist/.
+              cp -r assets $out/dist/.
+            '';
           };
 
           formatter = pkgs.nixfmt-tree; # Nix flake formatter. Run `nix fmt` to use
